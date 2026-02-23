@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self Block - App Block & Focus</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+            background: #0D0D0F;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            max-width: 600px;
+            padding: 40px 24px;
+            text-align: center;
+        }
+        .icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            font-size: 48px;
+        }
+        h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .subtitle {
+            font-size: 18px;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 32px;
+        }
+        .description {
+            font-size: 16px;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 40px;
+        }
+        .links {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .links a {
+            color: #4da3ff;
+            text-decoration: none;
+            font-size: 15px;
+            padding: 10px 20px;
+            border: 1px solid rgba(77,163,255,0.3);
+            border-radius: 10px;
+            transition: all 0.2s;
+        }
+        .links a:hover {
+            background: rgba(77,163,255,0.1);
+            border-color: rgba(77,163,255,0.6);
+        }
+        .contact {
+            margin-top: 48px;
+            font-size: 14px;
+            color: rgba(255,255,255,0.4);
+        }
+        .contact a { color: rgba(255,255,255,0.5); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">🧠</div>
+        <h1>Self Block</h1>
+        <p class="subtitle">App Block & Focus</p>
+        <p class="description">
+            Take control of your screen time with the buddy system.
+            Block distracting apps, stay focused, and support each other
+            on the journey to mindful phone usage.
+        </p>
+        <div class="links">
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms.html">Terms of Use</a>
+        </div>
+        <p class="contact">
+            Contact: <a href="mailto:umaysoft@gmail.com">umaysoft@gmail.com</a>
+        </p>
+    </div>
+</body>
+</html>
