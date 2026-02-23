@@ -66,110 +66,586 @@
             margin-top: 32px;
         }
         .contact-box a { color: #4da3ff; }
+        [data-lang] { display: none; }
+        [data-lang].active { display: block; }
+        span[data-lang].active { display: inline; }
+        .lang-selector {
+            position: fixed;
+            top: 16px;
+            right: 16px;
+            z-index: 100;
+        }
+        .lang-selector select {
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 8px;
+            padding: 8px 32px 8px 12px;
+            font-size: 14px;
+            font-family: inherit;
+            cursor: pointer;
+            -webkit-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='rgba(255,255,255,0.6)' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+        }
+        .lang-selector select:focus { outline: none; border-color: rgba(77,163,255,0.5); }
+        .lang-selector select option { background: #1a1a1e; color: #fff; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <a href="index.html" class="back">&larr; Back to Home</a>
-        <h1>Terms of Use</h1>
-        <p class="updated">Last updated: February 23, 2026</p>
+    <div class="lang-selector">
+        <select id="langSwitch" onchange="setLang(this.value)">
+            <option value="en">English</option>
+            <option value="tr">T&#252;rk&#231;e</option>
+            <option value="de">Deutsch</option>
+            <option value="pt-br">Portugu&#234;s (BR)</option>
+            <option value="ja">&#26085;&#26412;&#35486;</option>
+        </select>
+    </div>
 
-        <div class="highlight">
-            Please read these terms carefully before using Self Block. By using the app, you agree to these terms.
+    <div class="container">
+        <a href="index.html" class="back">
+            <span data-lang="en">&larr; Back to Home</span>
+            <span data-lang="tr">&larr; Ana Sayfaya D&#246;n</span>
+            <span data-lang="de">&larr; Zur&#252;ck zur Startseite</span>
+            <span data-lang="pt-br">&larr; Voltar para a P&#225;gina Inicial</span>
+            <span data-lang="ja">&larr; ホームに戻る</span>
+        </a>
+
+        <div data-lang="en">
+            <h1>Terms of Use</h1>
+            <p class="updated">Last updated: February 23, 2026</p>
+
+            <div class="highlight">
+                Please read these terms carefully before using Self Block. By using the app, you agree to these terms.
+            </div>
+
+            <h2>1. Acceptance of Terms</h2>
+            <p>By downloading, installing, or using Self Block ("the App"), you agree to be bound by these Terms of Use. If you do not agree, please do not use the App.</p>
+
+            <h2>2. Description of Service</h2>
+            <p>Self Block is a screen time management application that helps you manage your phone usage through:</p>
+            <ul>
+                <li>App blocking and focus modes</li>
+                <li>Buddy system for mutual accountability</li>
+                <li>Community mode for anonymous support</li>
+                <li>Daily check-ins and progress tracking</li>
+            </ul>
+            <p>The App uses Apple's Screen Time API (Family Controls / Managed Settings) to apply app restrictions on your device.</p>
+
+            <h2>3. Account and Authentication</h2>
+            <ul>
+                <li>The App creates an anonymous account automatically — no registration required</li>
+                <li>You may optionally link your Apple ID for account recovery across device changes or reinstalls</li>
+                <li>You are responsible for maintaining the security of your device and account</li>
+                <li>If you uninstall the App without linking Apple Sign-In, your account and buddy connections may be permanently lost</li>
+            </ul>
+
+            <h2>4. Subscriptions and Payments</h2>
+            <ul>
+                <li>Self Block offers free and premium (Pro) tiers</li>
+                <li>The yearly subscription includes a <strong>3-day free trial</strong>. If you do not cancel before the trial ends, your Apple ID will be automatically charged for the yearly subscription</li>
+                <li>Premium subscriptions are billed through Apple's App Store</li>
+                <li>Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current period</li>
+                <li>You can manage and cancel subscriptions in your Apple ID account settings (Settings &gt; Apple ID &gt; Subscriptions)</li>
+                <li>Refunds are handled by Apple according to their refund policy</li>
+                <li>Free trial eligibility is determined by Apple and may be offered once per Apple ID</li>
+            </ul>
+
+            <h2>5. Buddy System and Community Mode</h2>
+            <ul>
+                <li>The buddy system connects two users for mutual accountability</li>
+                <li>By using the buddy system, you consent to sharing access request information with your connected buddy</li>
+                <li>Community mode allows anonymous users to respond to your access requests</li>
+                <li>You must not use the messaging features to send harmful, abusive, or inappropriate content</li>
+                <li>Messages are limited in length and subject to rate limiting</li>
+                <li>We reserve the right to suspend accounts that violate community guidelines</li>
+            </ul>
+
+            <h2>6. Acceptable Use</h2>
+            <p>You agree NOT to:</p>
+            <ul>
+                <li>Use the App for any unlawful purpose</li>
+                <li>Attempt to circumvent the App's blocking mechanisms through technical means</li>
+                <li>Abuse the buddy or community messaging system</li>
+                <li>Create multiple accounts to circumvent free tier limitations</li>
+                <li>Reverse engineer, decompile, or attempt to extract the source code of the App</li>
+                <li>Interfere with or disrupt the App's services or servers</li>
+            </ul>
+
+            <h2>7. Intellectual Property</h2>
+            <p>All content, features, and functionality of Self Block are owned by the developer and are protected by international copyright and other intellectual property laws. The Self Block name, logo, and all related names and logos are trademarks of the developer.</p>
+
+            <h2>8. Disclaimer of Warranties</h2>
+            <p>The App is provided "as is" and "as available" without warranties of any kind. We do not guarantee that:</p>
+            <ul>
+                <li>The App will be uninterrupted, timely, secure, or error-free</li>
+                <li>The blocking functionality will work perfectly in all circumstances (Apple may change Screen Time APIs)</li>
+                <li>The buddy system will always be available (requires internet connection)</li>
+            </ul>
+
+            <h2>9. Limitation of Liability</h2>
+            <p>To the maximum extent permitted by law, the developer shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the App. This includes, but is not limited to, damages arising from:</p>
+            <ul>
+                <li>Inability to access blocked apps when needed</li>
+                <li>Loss of data due to account issues</li>
+                <li>Actions taken by buddies or community members</li>
+            </ul>
+
+            <h2>10. Modifications to the App and Terms</h2>
+            <ul>
+                <li>We reserve the right to modify, suspend, or discontinue any part of the App at any time</li>
+                <li>We may update these Terms from time to time</li>
+                <li>Continued use after changes constitutes acceptance of the new Terms</li>
+                <li>Material changes will be communicated through the App</li>
+            </ul>
+
+            <h2>11. Termination</h2>
+            <p>We may terminate or suspend your access to the App at any time, without prior notice, for conduct that we believe violates these Terms or is harmful to other users or the service.</p>
+
+            <h2>12. Governing Law</h2>
+            <p>These Terms shall be governed by and construed in accordance with the laws of the Republic of Turkey, without regard to its conflict of law provisions.</p>
+
+            <div class="contact-box">
+                <h2 style="margin-top:0">13. Contact</h2>
+                <p>If you have questions about these Terms of Use:</p>
+                <p>Email: <a href="mailto:umaysoft@gmail.com">umaysoft@gmail.com</a></p>
+                <p>Developer: Ismail Palali</p>
+            </div>
         </div>
 
-        <h2>1. Acceptance of Terms</h2>
-        <p>By downloading, installing, or using Self Block ("the App"), you agree to be bound by these Terms of Use. If you do not agree, please do not use the App.</p>
+        <div data-lang="tr">
+            <h1>Kullan&#305;m Ko&#351;ullar&#305;</h1>
+            <p class="updated">Son g&#252;ncelleme: 23 &#350;ubat 2026</p>
 
-        <h2>2. Description of Service</h2>
-        <p>Self Block is a screen time management application that helps you manage your phone usage through:</p>
-        <ul>
-            <li>App blocking and focus modes</li>
-            <li>Buddy system for mutual accountability</li>
-            <li>Community mode for anonymous support</li>
-            <li>Daily check-ins and progress tracking</li>
-        </ul>
-        <p>The App uses Apple's Screen Time API (Family Controls / Managed Settings) to apply app restrictions on your device.</p>
+            <div class="highlight">
+                L&#252;tfen Self Block&#39;u kullanmadan &#246;nce bu ko&#351;ullar&#305; dikkatlice okuyun. Uygulamay&#305; kullanarak bu ko&#351;ullar&#305; kabul etmi&#351; olursunuz.
+            </div>
 
-        <h2>3. Account and Authentication</h2>
-        <ul>
-            <li>The App creates an anonymous account automatically — no registration required</li>
-            <li>You may optionally link your Apple ID for account recovery across device changes or reinstalls</li>
-            <li>You are responsible for maintaining the security of your device and account</li>
-            <li>If you uninstall the App without linking Apple Sign-In, your account and buddy connections may be permanently lost</li>
-        </ul>
+            <h2>1. Ko&#351;ullar&#305;n Kabul&#252;</h2>
+            <p>Self Block&#39;u (&quot;Uygulama&quot;) indirerek, y&#252;kleyerek veya kullanarak bu Kullan&#305;m Ko&#351;ullar&#305;na ba&#287;l&#305; olmay&#305; kabul edersiniz. Kabul etmiyorsan&#305;z, l&#252;tfen Uygulamay&#305; kullanmay&#305;n.</p>
 
-        <h2>4. Subscriptions and Payments</h2>
-        <ul>
-            <li>Self Block offers free and premium (Pro) tiers</li>
-            <li>The yearly subscription includes a <strong>3-day free trial</strong>. If you do not cancel before the trial ends, your Apple ID will be automatically charged for the yearly subscription</li>
-            <li>Premium subscriptions are billed through Apple's App Store</li>
-            <li>Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current period</li>
-            <li>You can manage and cancel subscriptions in your Apple ID account settings (Settings &gt; Apple ID &gt; Subscriptions)</li>
-            <li>Refunds are handled by Apple according to their refund policy</li>
-            <li>Free trial eligibility is determined by Apple and may be offered once per Apple ID</li>
-        </ul>
+            <h2>2. Hizmet Tan&#305;m&#305;</h2>
+            <p>Self Block, telefon kullan&#305;m&#305;n&#305;z&#305; y&#246;netmenize yard&#305;mc&#305; olan bir ekran s&#252;resi y&#246;netim uygulamas&#305;d&#305;r. A&#351;a&#287;&#305;daki &#246;zellikleri sunar:</p>
+            <ul>
+                <li>Uygulama engelleme ve odaklanma modlar&#305;</li>
+                <li>Kar&#351;&#305;l&#305;kl&#305; hesap verebilirlik i&#231;in arkada&#351; sistemi</li>
+                <li>Anonim destek i&#231;in topluluk modu</li>
+                <li>G&#252;nl&#252;k kontroller ve ilerleme takibi</li>
+            </ul>
+            <p>Uygulama, cihaz&#305;n&#305;zda uygulama k&#305;s&#305;tlamalar&#305; uygulamak i&#231;in Apple&#39;&#305;n Ekran S&#252;resi API&#39;sini (Family Controls / Managed Settings) kullan&#305;r.</p>
 
-        <h2>5. Buddy System and Community Mode</h2>
-        <ul>
-            <li>The buddy system connects two users for mutual accountability</li>
-            <li>By using the buddy system, you consent to sharing access request information with your connected buddy</li>
-            <li>Community mode allows anonymous users to respond to your access requests</li>
-            <li>You must not use the messaging features to send harmful, abusive, or inappropriate content</li>
-            <li>Messages are limited in length and subject to rate limiting</li>
-            <li>We reserve the right to suspend accounts that violate community guidelines</li>
-        </ul>
+            <h2>3. Hesap ve Kimlik Do&#287;rulama</h2>
+            <ul>
+                <li>Uygulama otomatik olarak anonim bir hesap olu&#351;turur &#8212; kay&#305;t gerekmez</li>
+                <li>Cihaz de&#287;i&#351;ikli&#287;i veya yeniden y&#252;kleme durumlar&#305;nda hesap kurtarma i&#231;in iste&#287;e ba&#287;l&#305; olarak Apple Kimli&#287;inizi ba&#287;layabilirsiniz</li>
+                <li>Cihaz&#305;n&#305;z&#305;n ve hesab&#305;n&#305;z&#305;n g&#252;venli&#287;ini sa&#287;lamak sizin sorumlulu&#287;unuzdad&#305;r</li>
+                <li>Apple ile Giri&#351; ba&#287;lamadan Uygulamay&#305; kald&#305;r&#305;rsan&#305;z, hesab&#305;n&#305;z ve arkada&#351; ba&#287;lant&#305;lar&#305;n&#305;z kal&#305;c&#305; olarak kaybedilebilir</li>
+            </ul>
 
-        <h2>6. Acceptable Use</h2>
-        <p>You agree NOT to:</p>
-        <ul>
-            <li>Use the App for any unlawful purpose</li>
-            <li>Attempt to circumvent the App's blocking mechanisms through technical means</li>
-            <li>Abuse the buddy or community messaging system</li>
-            <li>Create multiple accounts to circumvent free tier limitations</li>
-            <li>Reverse engineer, decompile, or attempt to extract the source code of the App</li>
-            <li>Interfere with or disrupt the App's services or servers</li>
-        </ul>
+            <h2>4. Abonelikler ve &#214;demeler</h2>
+            <ul>
+                <li>Self Block &#252;cretsiz ve premium (Pro) katmanlar sunar</li>
+                <li>Y&#305;ll&#305;k abonelik <strong>3 g&#252;nl&#252;k &#252;cretsiz deneme</strong> s&#252;resi i&#231;erir. Deneme s&#252;resi bitmeden iptal etmezseniz, Apple Kimli&#287;inize y&#305;ll&#305;k abonelik &#252;creti otomatik olarak yans&#305;t&#305;l&#305;r</li>
+                <li>Premium abonelikler Apple App Store &#252;zerinden faturaland&#305;r&#305;l&#305;r</li>
+                <li>Abonelikler, mevcut d&#246;nemin bitiminden en az 24 saat &#246;nce iptal edilmedi&#287;i s&#252;rece otomatik olarak yenilenir</li>
+                <li>Aboneliklerinizi Apple Kimli&#287;i hesap ayarlar&#305;ndan y&#246;netebilir ve iptal edebilirsiniz (Ayarlar &gt; Apple Kimli&#287;i &gt; Abonelikler)</li>
+                <li>&#304;adeler, Apple&#39;&#305;n iade politikas&#305;na uygun olarak Apple taraf&#305;ndan ger&#231;ekle&#351;tirilir</li>
+                <li>&#220;cretsiz deneme uygunlu&#287;u Apple taraf&#305;ndan belirlenir ve her Apple Kimli&#287;i i&#231;in bir kez sunulabilir</li>
+            </ul>
 
-        <h2>7. Intellectual Property</h2>
-        <p>All content, features, and functionality of Self Block are owned by the developer and are protected by international copyright and other intellectual property laws. The Self Block name, logo, and all related names and logos are trademarks of the developer.</p>
+            <h2>5. Arkada&#351; Sistemi ve Topluluk Modu</h2>
+            <ul>
+                <li>Arkada&#351; sistemi, kar&#351;&#305;l&#305;kl&#305; hesap verebilirlik i&#231;in iki kullan&#305;c&#305;y&#305; birbirine ba&#287;lar</li>
+                <li>Arkada&#351; sistemini kullanarak, eri&#351;im talebi bilgilerinizi ba&#287;l&#305; arkada&#351;&#305;n&#305;zla payla&#351;maya onay verirsiniz</li>
+                <li>Topluluk modu, anonim kullan&#305;c&#305;lar&#305;n eri&#351;im taleplerinize yan&#305;t vermesine olanak tan&#305;r</li>
+                <li>Mesajla&#351;ma &#246;zelliklerini zararl&#305;, k&#252;f&#252;rl&#252; veya uygunsuz i&#231;erik g&#246;ndermek i&#231;in kullanmamal&#305;s&#305;n&#305;z</li>
+                <li>Mesajlar uzunluk s&#305;n&#305;r&#305;na tabidir ve h&#305;z s&#305;n&#305;rlamas&#305; uygulan&#305;r</li>
+                <li>Topluluk kurallar&#305;n&#305; ihlal eden hesaplar&#305; ask&#305;ya alma hakk&#305;m&#305;z&#305; sakl&#305; tutarz</li>
+            </ul>
 
-        <h2>8. Disclaimer of Warranties</h2>
-        <p>The App is provided "as is" and "as available" without warranties of any kind. We do not guarantee that:</p>
-        <ul>
-            <li>The App will be uninterrupted, timely, secure, or error-free</li>
-            <li>The blocking functionality will work perfectly in all circumstances (Apple may change Screen Time APIs)</li>
-            <li>The buddy system will always be available (requires internet connection)</li>
-        </ul>
+            <h2>6. Kabul Edilebilir Kullan&#305;m</h2>
+            <p>A&#351;a&#287;&#305;dakileri YAPMAMAY&#304; kabul edersiniz:</p>
+            <ul>
+                <li>Uygulamay&#305; herhangi bir yasa d&#305;&#351;&#305; ama&#231; i&#231;in kullanmak</li>
+                <li>Uygulaman&#305;n engelleme mekanizmalar&#305;n&#305; teknik yollarla a&#351;maya &#231;al&#305;&#351;mak</li>
+                <li>Arkada&#351; veya topluluk mesajla&#351;ma sistemini k&#246;t&#252;ye kullanmak</li>
+                <li>&#220;cretsiz katman s&#305;n&#305;rlamalar&#305;n&#305; a&#351;mak i&#231;in birden fazla hesap olu&#351;turmak</li>
+                <li>Uygulaman&#305;n kaynak kodunu tersine m&#252;hendislik, derlemeyi &#231;&#246;zme veya &#231;&#305;karmaya te&#351;ebb&#252;s etmek</li>
+                <li>Uygulaman&#305;n hizmetlerini veya sunucular&#305;n&#305; engellemek veya bozmak</li>
+            </ul>
 
-        <h2>9. Limitation of Liability</h2>
-        <p>To the maximum extent permitted by law, the developer shall not be liable for any indirect, incidental, special, or consequential damages arising from your use of the App. This includes, but is not limited to, damages arising from:</p>
-        <ul>
-            <li>Inability to access blocked apps when needed</li>
-            <li>Loss of data due to account issues</li>
-            <li>Actions taken by buddies or community members</li>
-        </ul>
+            <h2>7. Fikri M&#252;lkiyet</h2>
+            <p>Self Block&#39;un t&#252;m i&#231;eri&#287;i, &#246;zellikleri ve i&#351;levselli&#287;i geli&#351;tiriciye aittir ve uluslararas&#305; telif hakk&#305; ve di&#287;er fikri m&#252;lkiyet yasalar&#305;yla korunmaktad&#305;r. Self Block ad&#305;, logosu ve t&#252;m ilgili adlar ve logolar geli&#351;tiricinin ticari markalar&#305;d&#305;r.</p>
 
-        <h2>10. Modifications to the App and Terms</h2>
-        <ul>
-            <li>We reserve the right to modify, suspend, or discontinue any part of the App at any time</li>
-            <li>We may update these Terms from time to time</li>
-            <li>Continued use after changes constitutes acceptance of the new Terms</li>
-            <li>Material changes will be communicated through the App</li>
-        </ul>
+            <h2>8. Garanti Reddi</h2>
+            <p>Uygulama herhangi bir garanti verilmeksizin &quot;oldu&#287;u gibi&quot; ve &quot;mevcut oldu&#287;u &#351;ekliyle&quot; sunulmaktad&#305;r. A&#351;a&#287;&#305;dakileri garanti etmiyoruz:</p>
+            <ul>
+                <li>Uygulaman&#305;n kesintisiz, zaman&#305;nda, g&#252;venli veya hatas&#305;z olaca&#287;&#305;</li>
+                <li>Engelleme i&#351;levselli&#287;inin t&#252;m ko&#351;ullarda m&#252;kemmel &#231;al&#305;&#351;aca&#287;&#305; (Apple, Ekran S&#252;resi API&#39;lerini de&#287;i&#351;tirebilir)</li>
+                <li>Arkada&#351; sisteminin her zaman kullan&#305;labilir olaca&#287;&#305; (internet ba&#287;lant&#305;s&#305; gerektirir)</li>
+            </ul>
 
-        <h2>11. Termination</h2>
-        <p>We may terminate or suspend your access to the App at any time, without prior notice, for conduct that we believe violates these Terms or is harmful to other users or the service.</p>
+            <h2>9. Sorumluluk S&#305;n&#305;rlamas&#305;</h2>
+            <p>Yasalar&#305;n izin verdi&#287;i azami &#246;l&#231;&#252;de, geli&#351;tirici Uygulamay&#305; kullan&#305;m&#305;n&#305;zdan kaynaklanan herhangi bir dolayl&#305;, ar&#305;zi, &#246;zel veya sonu&#231;sal zarardan sorumlu olmayacakt&#305;r. Bu, a&#351;a&#287;&#305;dakilerden kaynaklanan zararlar&#305; i&#231;erir ancak bunlarla s&#305;n&#305;rl&#305; de&#287;ildir:</p>
+            <ul>
+                <li>&#304;htiya&#231; duyuldu&#287;unda engellenen uygulamalara eri&#351;ememe</li>
+                <li>Hesap sorunlar&#305; nedeniyle veri kayb&#305;</li>
+                <li>Arkada&#351;lar veya topluluk &#252;yeleri taraf&#305;ndan ger&#231;ekle&#351;tirilen eylemler</li>
+            </ul>
 
-        <h2>12. Governing Law</h2>
-        <p>These Terms shall be governed by and construed in accordance with the laws of the Republic of Turkey, without regard to its conflict of law provisions.</p>
+            <h2>10. Uygulama ve Ko&#351;ullarda De&#287;i&#351;iklikler</h2>
+            <ul>
+                <li>Uygulaman&#305;n herhangi bir b&#246;l&#252;m&#252;n&#252; istedi&#287;imiz zaman de&#287;i&#351;tirme, ask&#305;ya alma veya durdurma hakk&#305;m&#305;z&#305; sakl&#305; tutarz</li>
+                <li>Bu Ko&#351;ullar&#305; zaman zaman g&#252;ncelleyebiliriz</li>
+                <li>De&#287;i&#351;ikliklerden sonra kullanmaya devam etmeniz yeni Ko&#351;ullar&#305;n kabul&#252; anlam&#305;na gelir</li>
+                <li>&#214;nemli de&#287;i&#351;iklikler Uygulama arac&#305;l&#305;&#287;&#305;yla bildirilecektir</li>
+            </ul>
 
-        <div class="contact-box">
-            <h2 style="margin-top:0">13. Contact</h2>
-            <p>If you have questions about these Terms of Use:</p>
-            <p>Email: <a href="mailto:umaysoft@gmail.com">umaysoft@gmail.com</a></p>
-            <p>Developer: Ismail Palali</p>
+            <h2>11. Fesih</h2>
+            <p>Bu Ko&#351;ullar&#305; ihlal etti&#287;inize veya di&#287;er kullan&#305;c&#305;lara ya da hizmete zarar verdi&#287;inize inand&#305;&#287;&#305;m&#305;z davran&#305;&#351;lar nedeniyle, &#246;nceden bildirimde bulunmaks&#305;z&#305;n Uygulamaya eri&#351;iminizi istedi&#287;imiz zaman sonland&#305;rabilir veya ask&#305;ya alabiliriz.</p>
+
+            <h2>12. Uygulanacak Hukuk</h2>
+            <p>Bu Ko&#351;ullar, kanun ihtilaf&#305; h&#252;k&#252;mleri dikkate al&#305;nmaks&#305;z&#305;n, T&#252;rkiye Cumhuriyeti yasalar&#305;na g&#246;re y&#246;netilecek ve yorumlanacakt&#305;r.</p>
+
+            <div class="contact-box">
+                <h2 style="margin-top:0">13. &#304;leti&#351;im</h2>
+                <p>Bu Kullan&#305;m Ko&#351;ullar&#305; hakk&#305;nda sorular&#305;n&#305;z varsa:</p>
+                <p>E-posta: <a href="mailto:umaysoft@gmail.com">umaysoft@gmail.com</a></p>
+                <p>Geli&#351;tirici: &#304;smail Palal&#305;</p>
+            </div>
+        </div>
+
+        <div data-lang="de">
+            <h1>Nutzungsbedingungen</h1>
+            <p class="updated">Zuletzt aktualisiert: 23. Februar 2026</p>
+
+            <div class="highlight">
+                Bitte lesen Sie diese Bedingungen sorgf&#228;ltig durch, bevor Sie Self Block verwenden. Durch die Nutzung der App stimmen Sie diesen Bedingungen zu.
+            </div>
+
+            <h2>1. Annahme der Bedingungen</h2>
+            <p>Durch das Herunterladen, Installieren oder Verwenden von Self Block (&bdquo;die App&ldquo;) erkl&#228;ren Sie sich mit diesen Nutzungsbedingungen einverstanden. Wenn Sie nicht einverstanden sind, verwenden Sie die App bitte nicht.</p>
+
+            <h2>2. Beschreibung des Dienstes</h2>
+            <p>Self Block ist eine Bildschirmzeit-Verwaltungsanwendung, die Ihnen hilft, Ihre Telefonnutzung zu verwalten durch:</p>
+            <ul>
+                <li>App-Sperrung und Fokusmodi</li>
+                <li>Buddy-System f&#252;r gegenseitige Verantwortlichkeit</li>
+                <li>Community-Modus f&#252;r anonyme Unterst&#252;tzung</li>
+                <li>T&#228;gliche Check-ins und Fortschrittsverfolgung</li>
+            </ul>
+            <p>Die App verwendet Apples Screen Time API (Family Controls / Managed Settings), um App-Einschr&#228;nkungen auf Ihrem Ger&#228;t anzuwenden.</p>
+
+            <h2>3. Konto und Authentifizierung</h2>
+            <ul>
+                <li>Die App erstellt automatisch ein anonymes Konto &#8212; keine Registrierung erforderlich</li>
+                <li>Sie k&#246;nnen optional Ihre Apple-ID f&#252;r die Kontowiederherstellung bei Ger&#228;tewechsel oder Neuinstallationen verkn&#252;pfen</li>
+                <li>Sie sind f&#252;r die Sicherheit Ihres Ger&#228;ts und Kontos verantwortlich</li>
+                <li>Wenn Sie die App deinstallieren, ohne Apple-Anmeldung zu verkn&#252;pfen, k&#246;nnen Ihr Konto und Ihre Buddy-Verbindungen dauerhaft verloren gehen</li>
+            </ul>
+
+            <h2>4. Abonnements und Zahlungen</h2>
+            <ul>
+                <li>Self Block bietet kostenlose und Premium-(Pro-)Stufen an</li>
+                <li>Das Jahresabonnement beinhaltet eine <strong>3-t&#228;gige kostenlose Testversion</strong>. Wenn Sie vor Ablauf des Testzeitraums nicht k&#252;ndigen, wird Ihre Apple-ID automatisch f&#252;r das Jahresabonnement belastet</li>
+                <li>Premium-Abonnements werden &#252;ber Apples App Store abgerechnet</li>
+                <li>Abonnements verl&#228;ngern sich automatisch, sofern sie nicht mindestens 24 Stunden vor Ende des aktuellen Zeitraums gek&#252;ndigt werden</li>
+                <li>Sie k&#246;nnen Abonnements in Ihren Apple-ID-Kontoeinstellungen verwalten und k&#252;ndigen (Einstellungen &gt; Apple-ID &gt; Abonnements)</li>
+                <li>Erstattungen werden von Apple gem&#228;&#223; deren Erstattungsrichtlinie abgewickelt</li>
+                <li>Die Berechtigung f&#252;r die kostenlose Testversion wird von Apple bestimmt und kann einmal pro Apple-ID angeboten werden</li>
+            </ul>
+
+            <h2>5. Buddy-System und Community-Modus</h2>
+            <ul>
+                <li>Das Buddy-System verbindet zwei Benutzer f&#252;r gegenseitige Verantwortlichkeit</li>
+                <li>Durch die Nutzung des Buddy-Systems stimmen Sie zu, Zugriffsanfrageinformationen mit Ihrem verbundenen Buddy zu teilen</li>
+                <li>Der Community-Modus erm&#246;glicht es anonymen Benutzern, auf Ihre Zugriffsanfragen zu antworten</li>
+                <li>Sie d&#252;rfen die Nachrichtenfunktionen nicht verwenden, um sch&#228;dliche, beleidigende oder unangemessene Inhalte zu senden</li>
+                <li>Nachrichten sind in der L&#228;nge begrenzt und unterliegen einer Ratenbegrenzung</li>
+                <li>Wir behalten uns das Recht vor, Konten zu sperren, die gegen die Community-Richtlinien versto&#223;en</li>
+            </ul>
+
+            <h2>6. Akzeptable Nutzung</h2>
+            <p>Sie erkl&#228;ren sich damit einverstanden, Folgendes NICHT zu tun:</p>
+            <ul>
+                <li>Die App f&#252;r rechtswidrige Zwecke zu verwenden</li>
+                <li>Zu versuchen, die Sperrmechanismen der App durch technische Mittel zu umgehen</li>
+                <li>Das Buddy- oder Community-Nachrichtensystem zu missbrauchen</li>
+                <li>Mehrere Konten zu erstellen, um die Einschr&#228;nkungen der kostenlosen Stufe zu umgehen</li>
+                <li>Die App r&#252;ckzuentwickeln, zu dekompilieren oder zu versuchen, den Quellcode zu extrahieren</li>
+                <li>Die Dienste oder Server der App zu st&#246;ren oder zu beeintr&#228;chtigen</li>
+            </ul>
+
+            <h2>7. Geistiges Eigentum</h2>
+            <p>Alle Inhalte, Funktionen und die Funktionalit&#228;t von Self Block sind Eigentum des Entwicklers und durch internationale Urheber- und andere geistige Eigentumsgesetze gesch&#252;tzt. Der Name Self Block, das Logo und alle zugeh&#246;rigen Namen und Logos sind Marken des Entwicklers.</p>
+
+            <h2>8. Gew&#228;hrleistungsausschluss</h2>
+            <p>Die App wird &bdquo;wie besehen&ldquo; und &bdquo;wie verf&#252;gbar&ldquo; ohne jegliche Gew&#228;hrleistung bereitgestellt. Wir garantieren nicht, dass:</p>
+            <ul>
+                <li>Die App ununterbrochen, rechtzeitig, sicher oder fehlerfrei funktioniert</li>
+                <li>Die Sperrfunktionalit&#228;t unter allen Umst&#228;nden einwandfrei funktioniert (Apple kann die Screen Time APIs &#228;ndern)</li>
+                <li>Das Buddy-System immer verf&#252;gbar ist (erfordert Internetverbindung)</li>
+            </ul>
+
+            <h2>9. Haftungsbeschr&#228;nkung</h2>
+            <p>Im gesetzlich maximal zul&#228;ssigen Umfang haftet der Entwickler nicht f&#252;r indirekte, zuf&#228;llige, besondere oder Folgesch&#228;den, die aus Ihrer Nutzung der App entstehen. Dies umfasst, ist aber nicht beschr&#228;nkt auf, Sch&#228;den die entstehen durch:</p>
+            <ul>
+                <li>Unf&#228;higkeit, bei Bedarf auf gesperrte Apps zuzugreifen</li>
+                <li>Datenverlust aufgrund von Kontoproblemen</li>
+                <li>Handlungen von Buddys oder Community-Mitgliedern</li>
+            </ul>
+
+            <h2>10. &#196;nderungen an der App und den Bedingungen</h2>
+            <ul>
+                <li>Wir behalten uns das Recht vor, jeden Teil der App jederzeit zu &#228;ndern, auszusetzen oder einzustellen</li>
+                <li>Wir k&#246;nnen diese Bedingungen von Zeit zu Zeit aktualisieren</li>
+                <li>Die fortgesetzte Nutzung nach &#196;nderungen gilt als Annahme der neuen Bedingungen</li>
+                <li>Wesentliche &#196;nderungen werden &#252;ber die App mitgeteilt</li>
+            </ul>
+
+            <h2>11. K&#252;ndigung</h2>
+            <p>Wir k&#246;nnen Ihren Zugang zur App jederzeit und ohne Vorank&#252;ndigung k&#252;ndigen oder aussetzen, wenn Ihr Verhalten nach unserer Auffassung gegen diese Bedingungen verst&#246;&#223;t oder f&#252;r andere Benutzer oder den Dienst sch&#228;dlich ist.</p>
+
+            <h2>12. Anwendbares Recht</h2>
+            <p>Diese Bedingungen unterliegen den Gesetzen der Republik T&#252;rkei und werden in &#220;bereinstimmung mit diesen ausgelegt, ohne Ber&#252;cksichtigung der Kollisionsnormen.</p>
+
+            <div class="contact-box">
+                <h2 style="margin-top:0">13. Kontakt</h2>
+                <p>Wenn Sie Fragen zu diesen Nutzungsbedingungen haben:</p>
+                <p>E-Mail: <a href="mailto:umaysoft@gmail.com">umaysoft@gmail.com</a></p>
+                <p>Entwickler: Ismail Palali</p>
+            </div>
+        </div>
+
+        <div data-lang="pt-br">
+            <h1>Termos de Uso</h1>
+            <p class="updated">&#218;ltima atualiza&#231;&#227;o: 23 de fevereiro de 2026</p>
+
+            <div class="highlight">
+                Por favor, leia estes termos com aten&#231;&#227;o antes de usar o Self Block. Ao usar o aplicativo, voc&#234; concorda com estes termos.
+            </div>
+
+            <h2>1. Aceita&#231;&#227;o dos Termos</h2>
+            <p>Ao baixar, instalar ou usar o Self Block (&quot;o Aplicativo&quot;), voc&#234; concorda em se vincular a estes Termos de Uso. Se voc&#234; n&#227;o concordar, por favor n&#227;o use o Aplicativo.</p>
+
+            <h2>2. Descri&#231;&#227;o do Servi&#231;o</h2>
+            <p>O Self Block &#233; um aplicativo de gerenciamento de tempo de tela que ajuda voc&#234; a gerenciar o uso do seu telefone atrav&#233;s de:</p>
+            <ul>
+                <li>Bloqueio de aplicativos e modos de foco</li>
+                <li>Sistema de parceiros para responsabilidade m&#250;tua</li>
+                <li>Modo comunidade para suporte an&#244;nimo</li>
+                <li>Check-ins di&#225;rios e acompanhamento de progresso</li>
+            </ul>
+            <p>O Aplicativo usa a API de Tempo de Tela da Apple (Family Controls / Managed Settings) para aplicar restri&#231;&#245;es de aplicativos no seu dispositivo.</p>
+
+            <h2>3. Conta e Autentica&#231;&#227;o</h2>
+            <ul>
+                <li>O Aplicativo cria uma conta an&#244;nima automaticamente &#8212; nenhum cadastro necess&#225;rio</li>
+                <li>Voc&#234; pode opcionalmente vincular seu Apple ID para recupera&#231;&#227;o de conta em caso de troca de dispositivo ou reinstala&#231;&#227;o</li>
+                <li>Voc&#234; &#233; respons&#225;vel por manter a seguran&#231;a do seu dispositivo e conta</li>
+                <li>Se voc&#234; desinstalar o Aplicativo sem vincular o Apple Sign-In, sua conta e conex&#245;es de parceiros podem ser permanentemente perdidas</li>
+            </ul>
+
+            <h2>4. Assinaturas e Pagamentos</h2>
+            <ul>
+                <li>O Self Block oferece planos gratuito e premium (Pro)</li>
+                <li>A assinatura anual inclui um <strong>per&#237;odo de teste gr&#225;tis de 3 dias</strong>. Se voc&#234; n&#227;o cancelar antes do t&#233;rmino do per&#237;odo de teste, seu Apple ID ser&#225; automaticamente cobrado pela assinatura anual</li>
+                <li>Assinaturas premium s&#227;o cobradas atrav&#233;s da App Store da Apple</li>
+                <li>As assinaturas s&#227;o renovadas automaticamente, a menos que sejam canceladas pelo menos 24 horas antes do final do per&#237;odo atual</li>
+                <li>Voc&#234; pode gerenciar e cancelar assinaturas nas configura&#231;&#245;es da sua conta Apple ID (Ajustes &gt; Apple ID &gt; Assinaturas)</li>
+                <li>Reembolsos s&#227;o tratados pela Apple de acordo com sua pol&#237;tica de reembolso</li>
+                <li>A elegibilidade para o teste gr&#225;tis &#233; determinada pela Apple e pode ser oferecida uma vez por Apple ID</li>
+            </ul>
+
+            <h2>5. Sistema de Parceiros e Modo Comunidade</h2>
+            <ul>
+                <li>O sistema de parceiros conecta dois usu&#225;rios para responsabilidade m&#250;tua</li>
+                <li>Ao usar o sistema de parceiros, voc&#234; consente em compartilhar informa&#231;&#245;es de solicita&#231;&#227;o de acesso com seu parceiro conectado</li>
+                <li>O modo comunidade permite que usu&#225;rios an&#244;nimos respondam &#224;s suas solicita&#231;&#245;es de acesso</li>
+                <li>Voc&#234; n&#227;o deve usar os recursos de mensagens para enviar conte&#250;do prejudicial, abusivo ou inadequado</li>
+                <li>As mensagens s&#227;o limitadas em comprimento e est&#227;o sujeitas a limita&#231;&#227;o de taxa</li>
+                <li>Reservamo-nos o direito de suspender contas que violem as diretrizes da comunidade</li>
+            </ul>
+
+            <h2>6. Uso Aceit&#225;vel</h2>
+            <p>Voc&#234; concorda em N&#195;O:</p>
+            <ul>
+                <li>Usar o Aplicativo para qualquer finalidade ilegal</li>
+                <li>Tentar contornar os mecanismos de bloqueio do Aplicativo por meios t&#233;cnicos</li>
+                <li>Abusar do sistema de mensagens de parceiros ou da comunidade</li>
+                <li>Criar m&#250;ltiplas contas para contornar as limita&#231;&#245;es do plano gratuito</li>
+                <li>Realizar engenharia reversa, descompilar ou tentar extrair o c&#243;digo-fonte do Aplicativo</li>
+                <li>Interferir ou interromper os servi&#231;os ou servidores do Aplicativo</li>
+            </ul>
+
+            <h2>7. Propriedade Intelectual</h2>
+            <p>Todo o conte&#250;do, recursos e funcionalidades do Self Block s&#227;o de propriedade do desenvolvedor e s&#227;o protegidos por leis internacionais de direitos autorais e outras leis de propriedade intelectual. O nome Self Block, o logotipo e todos os nomes e logotipos relacionados s&#227;o marcas registradas do desenvolvedor.</p>
+
+            <h2>8. Isen&#231;&#227;o de Garantias</h2>
+            <p>O Aplicativo &#233; fornecido &quot;como est&#225;&quot; e &quot;conforme dispon&#237;vel&quot;, sem garantias de qualquer tipo. N&#227;o garantimos que:</p>
+            <ul>
+                <li>O Aplicativo ser&#225; ininterrupto, pontual, seguro ou livre de erros</li>
+                <li>A funcionalidade de bloqueio funcionar&#225; perfeitamente em todas as circunst&#226;ncias (a Apple pode alterar as APIs de Tempo de Tela)</li>
+                <li>O sistema de parceiros estar&#225; sempre dispon&#237;vel (requer conex&#227;o com a internet)</li>
+            </ul>
+
+            <h2>9. Limita&#231;&#227;o de Responsabilidade</h2>
+            <p>Na m&#225;xima extens&#227;o permitida por lei, o desenvolvedor n&#227;o ser&#225; respons&#225;vel por quaisquer danos indiretos, incidentais, especiais ou consequenciais decorrentes do seu uso do Aplicativo. Isso inclui, mas n&#227;o se limita a, danos decorrentes de:</p>
+            <ul>
+                <li>Incapacidade de acessar aplicativos bloqueados quando necess&#225;rio</li>
+                <li>Perda de dados devido a problemas de conta</li>
+                <li>A&#231;&#245;es tomadas por parceiros ou membros da comunidade</li>
+            </ul>
+
+            <h2>10. Modifica&#231;&#245;es no Aplicativo e nos Termos</h2>
+            <ul>
+                <li>Reservamo-nos o direito de modificar, suspender ou descontinuar qualquer parte do Aplicativo a qualquer momento</li>
+                <li>Podemos atualizar estes Termos periodicamente</li>
+                <li>O uso continuado ap&#243;s as altera&#231;&#245;es constitui aceita&#231;&#227;o dos novos Termos</li>
+                <li>Altera&#231;&#245;es substanciais ser&#227;o comunicadas atrav&#233;s do Aplicativo</li>
+            </ul>
+
+            <h2>11. Rescis&#227;o</h2>
+            <p>Podemos encerrar ou suspender seu acesso ao Aplicativo a qualquer momento, sem aviso pr&#233;vio, por conduta que acreditamos violar estes Termos ou ser prejudicial a outros usu&#225;rios ou ao servi&#231;o.</p>
+
+            <h2>12. Lei Aplic&#225;vel</h2>
+            <p>Estes Termos ser&#227;o regidos e interpretados de acordo com as leis da Rep&#250;blica da Turquia, sem considerar suas disposi&#231;&#245;es sobre conflitos de leis.</p>
+
+            <div class="contact-box">
+                <h2 style="margin-top:0">13. Contato</h2>
+                <p>Se voc&#234; tiver d&#250;vidas sobre estes Termos de Uso:</p>
+                <p>E-mail: <a href="mailto:umaysoft@gmail.com">umaysoft@gmail.com</a></p>
+                <p>Desenvolvedor: Ismail Palali</p>
+            </div>
+        </div>
+
+        <div data-lang="ja">
+            <h1>利用規約</h1>
+            <p class="updated">最終更新日：2026年2月23日</p>
+
+            <div class="highlight">
+                Self Blockをご利用になる前に、本規約をよくお読みください。本アプリをご利用になることで、本規約に同意したものとみなされます。
+            </div>
+
+            <h2>1. 規約の承諾</h2>
+            <p>Self Block（以下「本アプリ」）をダウンロード、インストール、または使用することにより、お客様は本利用規約に拘束されることに同意するものとします。同意されない場合は、本アプリをご使用にならないでください。</p>
+
+            <h2>2. サービスの説明</h2>
+            <p>Self Blockは、以下の機能を通じてスマートフォンの使用を管理するためのスクリーンタイム管理アプリケーションです：</p>
+            <ul>
+                <li>アプリのブロックとフォーカスモード</li>
+                <li>相互責任のためのバディシステム</li>
+                <li>匿名サポートのためのコミュニティモード</li>
+                <li>毎日のチェックインと進捗追跡</li>
+            </ul>
+            <p>本アプリは、Apple のScreen Time API（Family Controls / Managed Settings）を使用して、お客様のデバイスにアプリの制限を適用します。</p>
+
+            <h2>3. アカウントと認証</h2>
+            <ul>
+                <li>本アプリは匿名アカウントを自動的に作成します &#8212; 登録は不要です</li>
+                <li>デバイスの変更や再インストール時のアカウント復旧のために、任意でApple IDを連携できます</li>
+                <li>お客様のデバイスとアカウントのセキュリティを維持する責任はお客様にあります</li>
+                <li>Apple サインインを連携せずにアプリをアンインストールすると、アカウントとバディ接続が永久に失われる可能性があります</li>
+            </ul>
+
+            <h2>4. サブスクリプションと支払い</h2>
+            <ul>
+                <li>Self Blockは無料プランとプレミアム（Pro）プランを提供しています</li>
+                <li>年間サブスクリプションには<strong>3日間の無料トライアル</strong>が含まれています。トライアル期間終了前にキャンセルしない場合、お客様のApple IDに年間サブスクリプション料金が自動的に請求されます</li>
+                <li>プレミアムサブスクリプションはAppleのApp Storeを通じて請求されます</li>
+                <li>サブスクリプションは、現在の期間終了の少なくとも24時間前にキャンセルしない限り、自動的に更新されます</li>
+                <li>サブスクリプションはApple IDのアカウント設定で管理およびキャンセルできます（設定 &gt; Apple ID &gt; サブスクリプション）</li>
+                <li>返金はAppleの返金ポリシーに従ってAppleが処理します</li>
+                <li>無料トライアルの利用資格はAppleが決定し、Apple IDごとに1回提供される場合があります</li>
+            </ul>
+
+            <h2>5. バディシステムとコミュニティモード</h2>
+            <ul>
+                <li>バディシステムは、相互責任のために2人のユーザーを接続します</li>
+                <li>バディシステムを使用することにより、接続されたバディとアクセスリクエスト情報を共有することに同意するものとします</li>
+                <li>コミュニティモードでは、匿名ユーザーがお客様のアクセスリクエストに応答できます</li>
+                <li>メッセージ機能を使用して、有害、虐待的、または不適切なコンテンツを送信してはなりません</li>
+                <li>メッセージには文字数制限があり、送信レート制限が適用されます</li>
+                <li>コミュニティガイドラインに違反するアカウントを停止する権利を留保します</li>
+            </ul>
+
+            <h2>6. 許容される利用</h2>
+            <p>お客様は、以下の行為を行わないことに同意するものとします：</p>
+            <ul>
+                <li>違法な目的で本アプリを使用すること</li>
+                <li>技術的手段によって本アプリのブロック機能を回避しようとすること</li>
+                <li>バディまたはコミュニティメッセージシステムを悪用すること</li>
+                <li>無料プランの制限を回避するために複数のアカウントを作成すること</li>
+                <li>本アプリのリバースエンジニアリング、逆コンパイル、またはソースコードの抽出を試みること</li>
+                <li>本アプリのサービスまたはサーバーを妨害または中断すること</li>
+            </ul>
+
+            <h2>7. 知的財産権</h2>
+            <p>Self Blockのすべてのコンテンツ、機能、および機能性は開発者が所有しており、国際的な著作権法およびその他の知的財産法により保護されています。Self Blockの名称、ロゴ、およびすべての関連する名称とロゴは開発者の商標です。</p>
+
+            <h2>8. 保証の免責</h2>
+            <p>本アプリは、いかなる種類の保証もなく、「現状のまま」および「利用可能な状態で」提供されます。以下を保証するものではありません：</p>
+            <ul>
+                <li>本アプリが中断なく、タイムリーに、安全に、またはエラーなく動作すること</li>
+                <li>ブロック機能がすべての状況で完全に機能すること（AppleがScreen Time APIを変更する可能性があります）</li>
+                <li>バディシステムが常に利用可能であること（インターネット接続が必要です）</li>
+            </ul>
+
+            <h2>9. 責任の制限</h2>
+            <p>法律で認められる最大限の範囲において、開発者は、お客様の本アプリの使用から生じるいかなる間接的、偶発的、特別、または結果的損害についても責任を負わないものとします。これには以下から生じる損害を含みますが、これらに限定されません：</p>
+            <ul>
+                <li>必要な時にブロックされたアプリにアクセスできないこと</li>
+                <li>アカウントの問題によるデータの喪失</li>
+                <li>バディまたはコミュニティメンバーによって行われた行為</li>
+            </ul>
+
+            <h2>10. アプリおよび規約の変更</h2>
+            <ul>
+                <li>当社は、本アプリのいかなる部分をいつでも変更、停止、または中止する権利を留保します</li>
+                <li>本規約を随時更新する場合があります</li>
+                <li>変更後の継続的な使用は、新しい規約の承諾を構成します</li>
+                <li>重要な変更はアプリを通じてお知らせします</li>
+            </ul>
+
+            <h2>11. 契約の終了</h2>
+            <p>当社は、本規約に違反する、または他のユーザーもしくはサービスに害を及ぼすと当社が判断する行為について、事前の通知なく、いつでもお客様の本アプリへのアクセスを終了または停止することができます。</p>
+
+            <h2>12. 準拠法</h2>
+            <p>本規約は、法の抵触に関する規定を考慮することなく、トルコ共和国の法律に準拠し、これに従って解釈されるものとします。</p>
+
+            <div class="contact-box">
+                <h2 style="margin-top:0">13. お問い合わせ</h2>
+                <p>本利用規約についてご質問がある場合：</p>
+                <p>メール：<a href="mailto:umaysoft@gmail.com">umaysoft@gmail.com</a></p>
+                <p>開発者：Ismail Palali</p>
+            </div>
         </div>
     </div>
+
+    <script>
+        var SUPPORTED = ['en','tr','de','pt-br','ja'];
+        function detectLang() {
+            var saved = localStorage.getItem('sb-lang');
+            if (saved && SUPPORTED.indexOf(saved) !== -1) return saved;
+            var nav = (navigator.language || '').toLowerCase();
+            if (nav.indexOf('tr') === 0) return 'tr';
+            if (nav.indexOf('de') === 0) return 'de';
+            if (nav.indexOf('pt') === 0) return 'pt-br';
+            if (nav.indexOf('ja') === 0) return 'ja';
+            return 'en';
+        }
+        function setLang(code) {
+            localStorage.setItem('sb-lang', code);
+            document.querySelectorAll('[data-lang]').forEach(function(el) {
+                el.classList.toggle('active', el.getAttribute('data-lang') === code);
+            });
+            document.getElementById('langSwitch').value = code;
+            document.documentElement.lang = code === 'pt-br' ? 'pt-BR' : code;
+        }
+        setLang(detectLang());
+    </script>
 </body>
 </html>
